@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "--- Database Scripts ---", "--- Database Scripts ---", "{C5D63063-B076-4A6C-A737-27DDEF8509A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Database Changes", "0 - Database Changes", "{CFEE8C55-FF71-437C-93DA-57E76AC348F1}"
+	ProjectSection(SolutionItems) = preProject
+		002_add_DBAdmin.sql = 002_add_DBAdmin.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1- Schema Changes", "1- Schema Changes", "{69620D5E-CFB6-4973-8B01-FCD4DE79483B}"
+	ProjectSection(SolutionItems) = preProject
+		101_crt_Users.sql = 101_crt_Users.sql
+		102_crt_Roles.sql = 102_crt_Roles.sql
+		103_crt_UserRoles.sql = 103_crt_UserRoles.sql
+		104_crt_PermissionGroups.sql = 104_crt_PermissionGroups.sql
+		105_crt_Permissions.sql = 105_crt_Permissions.sql
+		106_crt_RolePermissions.sql = 106_crt_RolePermissions.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Data Changes", "2 - Data Changes", "{CA5489FA-5811-45E3-93F9-7F51CF4CAD02}"
+	ProjectSection(SolutionItems) = preProject
+		201_ins_PermissionGroups.sql = 201_ins_PermissionGroups.sql
+		202_ins_Permissions.sql = 202_ins_Permissions.sql
+		299_ins_Admin.sql = 299_ins_Admin.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Stored Procedure Changes", "3 - Stored Procedure Changes", "{6558C32B-D4BB-455C-9AFF-FC33716074FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventRegistration.Data", "EventRegistration.Data\EventRegistration.Data.csproj", "{3287000E-8CEB-4230-A938-960D67E83544}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventRegistration", "EventRegistration\EventRegistration.csproj", "{FCD01979-A5DB-4A7D-B608-1D4830D08EFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventRegistration.Mail", "EventRegistration.Mail\EventRegistration.Mail.csproj", "{84B3E27C-B1BB-4B10-BBFF-6A85B644B21D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3287000E-8CEB-4230-A938-960D67E83544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3287000E-8CEB-4230-A938-960D67E83544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3287000E-8CEB-4230-A938-960D67E83544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3287000E-8CEB-4230-A938-960D67E83544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCD01979-A5DB-4A7D-B608-1D4830D08EFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCD01979-A5DB-4A7D-B608-1D4830D08EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCD01979-A5DB-4A7D-B608-1D4830D08EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCD01979-A5DB-4A7D-B608-1D4830D08EFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84B3E27C-B1BB-4B10-BBFF-6A85B644B21D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84B3E27C-B1BB-4B10-BBFF-6A85B644B21D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84B3E27C-B1BB-4B10-BBFF-6A85B644B21D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84B3E27C-B1BB-4B10-BBFF-6A85B644B21D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CFEE8C55-FF71-437C-93DA-57E76AC348F1} = {C5D63063-B076-4A6C-A737-27DDEF8509A9}
+		{69620D5E-CFB6-4973-8B01-FCD4DE79483B} = {C5D63063-B076-4A6C-A737-27DDEF8509A9}
+		{CA5489FA-5811-45E3-93F9-7F51CF4CAD02} = {C5D63063-B076-4A6C-A737-27DDEF8509A9}
+		{6558C32B-D4BB-455C-9AFF-FC33716074FB} = {C5D63063-B076-4A6C-A737-27DDEF8509A9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85417427-2E50-4A55-82D4-2DDF48906FAC}
+	EndGlobalSection
+EndGlobal

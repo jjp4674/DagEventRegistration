@@ -1,0 +1,6 @@
+C:\Dagorhir\EventRegistration.Mail\bin\Debug\EventRegistration.Mail.dll
+C:\Dagorhir\EventRegistration.Mail\bin\Debug\EventRegistration.Mail.pdb
+C:\Dagorhir\EventRegistration.Mail\obj\Debug\EventRegistration.Mail.csprojResolveAssemblyReference.cache
+C:\Dagorhir\EventRegistration.Mail\obj\Debug\EventRegistration.Mail.csproj.CoreCompileInputs.cache
+C:\Dagorhir\EventRegistration.Mail\obj\Debug\EventRegistration.Mail.dll
+C:\Dagorhir\EventRegistration.Mail\obj\Debug\EventRegistration.Mail.pdb

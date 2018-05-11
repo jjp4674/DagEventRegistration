@@ -1,0 +1,64 @@
+﻿@model IEnumerable<EventRegistration.Data.Models.Role>
+
+@using EventRegistration.Security.Constants;
+
+@{
+    ViewBag.Title = "Role Administration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 col-xs-12"><h2>Role Administration</h2></div>
+    <div class="col-md-4 col-xs-12 right headerRight text-right">
+        @if (CheckPermission(PermissionConstants.CREATE_NEW_ROLES))
+        {
+            @Html.ActionLink("Add New Role", "Create")
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var role in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => role.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => role.Description)
+                        </td>
+                        <td class="text-right">
+                            @if (CheckPermission(PermissionConstants.EDIT_EXISTING_ROLES))
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = role.RoleId })
+                            }
+                            @if (CheckPermission(PermissionConstants.DELETE_ROLES))
+                            {
+                                if (CheckPermission(PermissionConstants.EDIT_EXISTING_ROLES))
+                                {
+                                    <span> | </span>
+                                }
+
+                                using (Html.BeginForm("Delete", "Users", FormMethod.Post, new { @class = "btn-link deleteButton" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("roleId", role.RoleId)
+                                    <input type="submit" class="btn-link" value="Delete" onclick="return confirm('Removing this role will also remove it from all users that currently have it.  Are you sure you wish to proceed?')" />
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+</table>
+    </div>
+</div>

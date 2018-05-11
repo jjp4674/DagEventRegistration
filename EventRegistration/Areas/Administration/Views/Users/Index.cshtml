@@ -1,0 +1,95 @@
+﻿@model IEnumerable<EventRegistration.Data.Models.User>
+
+@using EventRegistration.Security.Constants;
+
+@{
+    ViewBag.Title = "User Administration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 col-xs-12"><h2>User Administration</h2></div>
+    <div class="col-md-4 col-xs-12 right headerRight text-right">
+        @if (CheckPermission(PermissionConstants.CREATE_NEW_USERS))
+        {
+            @Html.ActionLink("Add New User", "Create")
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email Confirmed</th>
+                    <th>Roles</th>
+                    <th>Failed Logins</th>
+                    <th>Locked</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => user.Username)</td>
+                        <td>@Html.DisplayFor(modelItem => user.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => user.FirstName)</td>
+                        <td>@Html.DisplayFor(modelItem => user.LastName)</td>
+                        <td>@Html.DisplayFor(modelItem => user.EmailConfirmed)</td>
+                        <td>
+                            @{
+                                string roles = "";
+
+                                foreach (var role in user.UserRoles)
+                                {
+                                    if (roles.Length > 0)
+                                    {
+                                        roles += "<br />";
+                                    }
+
+                                    roles += role.Role.Name;
+                                }
+                            }
+                            @MvcHtmlString.Create(roles)
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => user.FailedLogins)</td>
+                        <td>@Html.DisplayFor(modelItem => user.Locked)</td>
+                        <td class="text-right">
+                            @using (Html.BeginForm("ResetPassword", "Users", FormMethod.Post, new { @class = "btn-link deleteButton" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("userId", user.UserId)
+                                <input type="submit" class="btn-link" value="Reset Password" />
+                            }
+
+                            @if (CheckPermission(PermissionConstants.EDIT_EXISTING_USERS))
+                            {
+                                <span> | </span>
+                                @Html.ActionLink("Edit", "Edit", new { id = user.UserId })
+                            }
+                            @if (CheckPermission(PermissionConstants.DELETE_USERS) && user.UserId != 1)
+                            {
+                                if (CheckPermission(PermissionConstants.EDIT_EXISTING_USERS))
+                                {
+                                    <span> | </span>
+                                }
+                                using (Html.BeginForm("Delete", "Users", FormMethod.Post, new { @class = "btn-link deleteButton" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("userId", user.UserId)
+                                    <input type="submit" class="btn-link" value="Delete" />
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

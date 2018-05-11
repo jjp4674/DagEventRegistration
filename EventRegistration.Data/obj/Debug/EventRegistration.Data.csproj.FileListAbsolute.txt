@@ -1,0 +1,10 @@
+C:\Dagorhir\EventRegistration.Data\bin\Debug\EventRegistration.Data.dll.config
+C:\Dagorhir\EventRegistration.Data\bin\Debug\EventRegistration.Data.dll
+C:\Dagorhir\EventRegistration.Data\bin\Debug\EventRegistration.Data.pdb
+C:\Dagorhir\EventRegistration.Data\bin\Debug\EntityFramework.dll
+C:\Dagorhir\EventRegistration.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Dagorhir\EventRegistration.Data\bin\Debug\EntityFramework.xml
+C:\Dagorhir\EventRegistration.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Dagorhir\EventRegistration.Data\obj\Debug\EventRegistration.Data.csproj.CoreCompileInputs.cache
+C:\Dagorhir\EventRegistration.Data\obj\Debug\EventRegistration.Data.dll
+C:\Dagorhir\EventRegistration.Data\obj\Debug\EventRegistration.Data.pdb

@@ -1,0 +1,23 @@
+﻿@model EventRegistration.Models.LoginViewModel
+@{
+    ViewBag.Title = "Log In";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="loginPanel">
+    <span class="loginHeader">Log In</span>
+    <div class="loginPanelWhite">
+        @using (Html.BeginForm())
+        {
+            @Html.EditorForModel()
+            <div class="row">
+                <div class="col-xs-12 col-sm-9">
+                    @Html.ValidationSummary(true)
+                </div>
+                <div class="col-xs-12 col-sm-3 text-right">
+                    <button type="submit">Log In</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

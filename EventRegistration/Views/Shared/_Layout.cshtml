@@ -1,0 +1,77 @@
+﻿@using EventRegistration.Extensions;
+@using EventRegistration.Security.Constants;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Dagorhir Event Registration</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.NavigationLink("View Events", "Index", "Events")</li>
+                    @if (CheckPermission(PermissionConstants.MANAGE_USERS_EVENTS) || CheckPermission(PermissionConstants.MANAGE_ALL_EVENTS))
+                    {
+                        if (CheckPermission(PermissionConstants.MANAGE_ALL_EVENTS))
+                        {
+                            <li>@Html.NavigationLink("Manage All Events", "Manage", "Events")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.NavigationLink("Manage My Events", "Manage", "Events")</li>
+                        }
+                    }
+                    @if (CheckPermission(PermissionConstants.VIEW_USER_ADMINISTRATION))
+                    {
+                        <li class="dropdown dropdown-toggle">
+                            @Html.DropdownLink("Administration", "Administration", "navbarDropdown")
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @if (CheckPermission(PermissionConstants.VIEW_USER_ADMINISTRATION))
+                                {
+                                    <li>@Html.NavigationLink("User Administration", "Users", "Administration")</li>
+                                }
+                                @if (CheckPermission(PermissionConstants.VIEW_ROLE_ADMINISTRATION))
+                                {
+                                    <li>@Html.NavigationLink("Role Administration", "Roles", "Administration")</li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    @Html.Partial("_LoginPartial")
+                </ul>
+            </div>
+        </div>
+        <div class="redbar"></div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer>
+        <div class="container">
+            <div class="col-sm-6 col-xs-12">
+                <span>&copy; @DateTime.Now.Year Castel Communications, LLC</span>
+            </div>
+            <div class="col-sm-6 col-xs-12 text-right">
+                <span><a href="mailto:support@castel.com">support@dagreg.com</a></span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

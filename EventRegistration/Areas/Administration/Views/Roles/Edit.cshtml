@@ -1,0 +1,91 @@
+﻿@model EventRegistration.Models.RoleViewModel
+
+@using EventRegistration.Models
+@using System.Linq
+
+@{
+    ViewBag.Title = "Role Administration - Edit Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12"><h2>Role Administration - Edit Role</h2></div>
+</div>
+
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.RoleId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Permissions", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <ul class="treeview">
+                        @foreach (PermissionGroupViewModel pgvm in Model.Permissions.Where(p => p.ParentId == null).ToList())
+                        {
+                            @PermissionGroupSection(pgvm)
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        @Html.ActionLink("Back to Roles", "Index")
+    </div>
+</div>
+
+@helper PermissionGroupSection(PermissionGroupViewModel permissionGroup)
+{
+    <ul>
+        <span class="section">@Html.DisplayFor(pg => permissionGroup.Name)</span>
+        @foreach (PermissionGroupViewModel pgvm in permissionGroup.PermissionGroups)
+        {
+            @PermissionGroupSection(pgvm)
+        }
+        @foreach (PermissionViewModel pvm in permissionGroup.Permissions)
+        {
+            @PermissionSection(pvm)
+        }
+    </ul>
+}
+
+@helper PermissionSection(PermissionViewModel pvm)
+{
+    <li>
+        <div class="checkbox">
+            @Html.Hidden("Permission[" + pvm.PermissionId + "].PermissionId", pvm.PermissionId)
+            @Html.CheckBox("Permission[" + pvm.PermissionId + "].IsSelected", pvm.IsSelected)
+            @Html.Label("Permission[" + pvm.PermissionId + "].IsSelected", pvm.Name)
+        </div>
+    </li>
+}
