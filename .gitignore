@@ -4,3 +4,6 @@ _ReSharper.*
 bin
 obj
 packages
+.vs/EventRegistration/v15/.suo
+.vs/EventRegistration/v15/sqlite3/storage.ide
+*.ide
