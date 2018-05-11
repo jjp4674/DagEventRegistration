@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace EventRegistration.Controllers
 {
-    public class EventController : Controller
+    public class EventRegController : Controller
     {
         public bool ValidateCredentials(string permission)
         {

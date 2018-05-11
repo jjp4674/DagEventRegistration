@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace EventRegistration.Areas.Administration.Controllers
 {
     [Authorize]
-    public class RolesController : EventController
+    public class RolesController : EventRegController
     {
         private EventContext db = new EventContext();
 
